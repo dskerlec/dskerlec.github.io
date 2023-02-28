@@ -2,8 +2,10 @@
  const form = document.querySelector('form');
  const cityInput = document.querySelector('#city');
  const stateInput = document.querySelector('#state');
- const latInput = document.querySelector('#latitude');
- const longInput = document.querySelector('#longitude');
+ //const latInput = document.querySelector('#latitude');
+ const latInput = '41.50';
+ //const longInput = document.querySelector('#longitude');
+ const longInput = '-81.70';
  const forecastDiv = document.querySelector('#forecast');
 
 
@@ -28,6 +30,16 @@ form.addEventListener('submit', getWeather(latInput, longInput))
      // const city = cityInput.value;
     // const apiCityToLongLatUrl = 'https://nominatim.openstreetmap.org/search?q=${cityInput},${stateInput}';
     const apiWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`;
+    console.log(apiWeatherUrl);
+    console.log("lat" + lat);
+    console.log("long" + long);
     fetch(apiWeatherUrl)
       .then(response => response.json())
+        //console.log(response.status);
+        //console.log(response.json());
+      .then(data => {
+        let hourlyTemps = data.hourly.temperature_2m; //array of celcius temps for next x hours
+        hourlyTemps.forEach(element => console.log(element * (9/5) + 32)); //outputting single f temps to console
+      })
+      .catch(error => console.error(error));
   }
