@@ -14,8 +14,8 @@
  const nextHoursDiv = document.querySelector('#hourlyTwo');
  const laterHoursDiv = document.querySelector('#hourlyThree');
  let date = new Date();
- const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
- let day = getCurrentDate(date);
+ //const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+//  let day = getCurrentDate(date);
  let hour = getCurrentHour(date);
  getWeather(latInput, longInput)
 
@@ -28,34 +28,39 @@
     fetch(apiWeatherUrl)
       .then(response => response.json())
       .then(data => {
-        let result = data;
 
-        let todayHigh = getTemp(result, "daily", 0, "max");
-        let todayLow = getTemp(result, "daily", 0, "min");
-        let tomorrowHigh = getTemp(result, "daily", 1, "max");
-        let tomorrowLow = getTemp(result, "daily", 1, "min");
-        let overmorrowHigh = getTemp(result, "daily", 2, "max");
-        let overmorrowLow = getTemp(result, "daily", 1, "min");
+        let today = getDay(data, 0);
+        let todayHigh = getTemp(data, "daily", 0, "max");
+        let todayLow = getTemp(data, "daily", 0, "min");
+        let tomorrow = getDay(data, 1);
+        let tomorrowHigh = getTemp(data, "daily", 1, "max");
+        let tomorrowLow = getTemp(data, "daily", 1, "min");
+        let overmorrow = getDay(data, 2);
+        let overmorrowHigh = getTemp(data, "daily", 2, "max");
+        let overmorrowLow = getTemp(data, "daily", 1, "min");
 
         //TODO:get dates and replace "today tomorrow and overmorrow with actual dates"
-        todayDiv.innerHTML = `${day}:<br>High Temperature: ${todayHigh}°F<br>Low Temperature: ${todayLow}°F`
-        tomorrowDiv.innerHTML = `Tomorrow's Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F`
-        overmorrowDiv.innerHTML = `Overmorrow's Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F`
+        todayDiv.innerHTML = `${today}:<br>High Temperature: ${todayHigh}°F<br>Low Temperature: ${todayLow}°F`
+        tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F`
+        overmorrowDiv.innerHTML = `${overmorrow} Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F`
 
         //TODO: get current time
-        let nowTemp = getTemp(result, "hourly", hour);
+        let now = getHour(data, hour);
+        let nowTemp = getTemp(data, "hourly", hour);
         //let nowPrecip
-        let nextTemp = getTemp(result, "hourly", (hour+3));
+        let next = getHour(data, (hour+3));
+        let nextTemp = getTemp(data, "hourly", (hour+3));
         //let nextPrecip
-        let laterTemp = getTemp(result, "hourly", (hour+6));
+        let later = getHour(data, (hour+6));
+        let laterTemp = getTemp(data, "hourly", (hour+6));
         //let laterPrecip
 
-        //TODO: update with precip codes, 
+        //TODO: update with precip codes,
         //need a constant to list out the codes
         //possibly correlate each code with an image???
-        nowDiv.innerHTML = `Now:<br>Current Temperature: ${nowTemp}°F<br>Current Precipitation:`
-        nextHoursDiv.innerHTML = `in 3 Hours:<br>Current Temperature: ${nextTemp}°F<br>Current Precipitation:`
-        laterHoursDiv.innerHTML = `in 6 Hours:<br>Current Temperature: ${laterTemp}°F<br>Current Precipitation:`
+        nowDiv.innerHTML = `At ${now} :<br>Current Temperature: ${nowTemp}°F<br>Current Precipitation:`
+        nextHoursDiv.innerHTML = `At ${next} :<br>Current Temperature: ${nextTemp}°F<br>Current Precipitation:`
+        laterHoursDiv.innerHTML = `At ${later} :<br>Current Temperature: ${laterTemp}°F<br>Current Precipitation:`
 
       })
       .catch(error => console.error(error));
@@ -77,16 +82,26 @@
         //error
     }
   }
-  
+ 
   function getCurrentHour(date)
   {
       return date.getHours();
   }
 
-  function getCurrentDate(date)
+  function getDay(data, dayIndex)
   {
-      let month = months[date.getMonth()];
-      let day = date.getDate();
-      let year = date.getFullYear();
-      return `${month} ${day} , ${year}`
+    return data.daily.time[dayIndex];
   }
+
+  function getHour(data, hourIndex)
+  {
+    return data.hourly.time[hourIndex];
+  }
+
+  // function getCurrentDate(date)
+  // {
+  //     let month = months[date.getMonth()];
+  //     let day = date.getDate();
+  //     let year = date.getFullYear();
+  //     return `${month} ${day} , ${year}`
+  // }
