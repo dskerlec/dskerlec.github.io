@@ -7,23 +7,33 @@
   </head>
   <body>
     <div id="app">
-      <h1>Weather App</h1>
-      <form>
-        <!-- <label for="city">Enter city:</label>
-        <input type="text" id="city" name="city" required>
-        <label for="state">Enter state (full name):</label>
-         will replace with dropdown (both or just state?) -->
-        <!-- <input type="text" id="state" name="state" required> -->
-        <label for="latitude">Enter latitude:</label>
-        <input type="text" id="latitude" name="latitude" required>
-        <label for="longitude">Enter longitude (full name):</label>
-        <input type="text" id="longitude" name="longitude" required>
-        <button type="submit">Get Weather</button>
-      </form>
-      <div id="weather-info"></div>
-    </div>
+        <h1>Weather App</h1>
+        <div id="container"></div>
+          <h2> Daily Forecast:</h2>
+            <div id="dailyOne" class = "daily">Value</div>
+            <div id="dailyTwo" class = "daily">Value</div>
+            <div id="dailyThree" class = "daily">Value</div>
+        <h2> Hourly Forecast:</h2>
+            <div id="hourlyOne" class = "hourly">Value</div>
+            <div id="hourlyTwo" class = "hourly">Value</div>
+            <div id="hourlyThree" class = "hourly">Value</div>
+          <!-- <label for="city">Enter city:</label>
+          <input type="text" id="city" name="city" required>
+          <label for="state">Enter state (full name):</label>
+           will replace with dropdown (both or just state?) -->
+          <!-- <input type="text" id="state" name="state" required> -->
+          <!-- <label for="latitude">Enter latitude:</label>
+          <input type="text" id="latitude" name="latitude" required="">
+          <label for="longitude">Enter longitude (full name):</label>
+          <input type="text" id="longitude" name="longitude" required="">
+          <button type="submit">Get Weather</button> -->
+        
+        <div id="weather-info"></div>
+      </div>
 
-    <div id="forecast"></div>
+    <div id="forecast">
+        <h2></h2>
+    </div>
   </body>
   <script src="main.js"></script>
 </html>

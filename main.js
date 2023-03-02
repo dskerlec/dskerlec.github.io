@@ -29,7 +29,7 @@ form.addEventListener('submit', getWeather(latInput, longInput))
   function getWeather(lat, long) {
      // const city = cityInput.value;
     // const apiCityToLongLatUrl = 'https://nominatim.openstreetmap.org/search?q=${cityInput},${stateInput}';
-    const apiWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`;
+    const apiWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&temperature_unit=fahrenheit&currenttemperature=true&timezone=EST&daily=temperature_2m_max,temperature_2m_min&hourly=temperature_2m`;
     console.log(apiWeatherUrl);
     console.log("lat" + lat);
     console.log("long" + long);
@@ -38,8 +38,8 @@ form.addEventListener('submit', getWeather(latInput, longInput))
         //console.log(response.status);
         //console.log(response.json());
       .then(data => {
-        let hourlyTemps = data.hourly.temperature_2m; //array of celcius temps for next x hours
-        hourlyTemps.forEach(element => console.log(element * (9/5) + 32)); //outputting single f temps to console
+        console.log(data);
+        //forecastDiv.innerHTML = `Current Temperature: ${currentTempF}°F<br>In one hour it will be: ${nextTempF}°F`;
       })
       .catch(error => console.error(error));
   }

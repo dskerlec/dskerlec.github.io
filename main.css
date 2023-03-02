@@ -14,3 +14,10 @@ body {
   div #app {
     text-align: center;
   }
+
+  div .daily, .hourly {
+    display: inline-block;
+    color: black;
+    background-color: white;
+    width: 33%;
+  }
