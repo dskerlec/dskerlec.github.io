@@ -18,14 +18,16 @@ body {
   }
 
   div #app {
-    text-align: center;
+    text-align: left;
   }
 
   div .daily, .hourly {
     display: inline-block;
     color: var(--black);
-    background-color: white;
-    width: 33%;
+    background-color: rgb(126, 126, 203);
+    width: 15%;
+    border-width: 2px;
+    border-style: solid;
   }
   .daily-forecast-row .col-md-4, .hourly-forecast-row .col-md-4 {
     padding-top: 2rem;
