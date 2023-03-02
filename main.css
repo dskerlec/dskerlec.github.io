@@ -17,7 +17,7 @@ body {
 
   div .daily, .hourly {
     display: inline-block;
-    color: black;
+    color: #000;
     background-color: white;
     width: 33%;
   }
