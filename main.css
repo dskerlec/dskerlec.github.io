@@ -1,3 +1,9 @@
+:root {
+  font-size: 16px;
+
+  --black:#000;
+  
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #242424;
@@ -17,7 +23,12 @@ body {
 
   div .daily, .hourly {
     display: inline-block;
-    color: #000;
+    color: var(--black);
     background-color: white;
     width: 33%;
   }
+  .daily-forecast-row .col-md-4, .hourly-forecast-row .col-md-4 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+ 

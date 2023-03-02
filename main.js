@@ -6,24 +6,12 @@
  const latInput = '41.50';
  //const longInput = document.querySelector('#longitude');
  const longInput = '-81.70';
- const forecastDiv = document.querySelector('#forecast');
-
-
-//  form.addEventListener('submit', e => {
-//     e.preventDefault();    
-//     fetch(apiWeatherUrl)
-//       .then(response => response.json())
-//       .then(data => {
-//         // display the forecast data
-//         const temperature = data.hours[0].temperature_2m.value;
-//         const humidity = data.hours[0].relative_humidity_2m.value;
-//         forecastDiv.innerHTML = `Temperature: ${temperature}°C<br>Humidity: ${humidity}%`;
-//       })
-//       .catch(error => {
-//         // handle any errors
-//         console.error(error);
-//       });
-//   });
+ const todayDiv = document.querySelector('#dailyOne');
+ const tomorrowDiv = document.querySelector('#dailyTwo');
+ const overmorrowDiv = document.querySelector('#dailyThree');
+ const nowDiv = document.querySelector('#hourlyOne');
+ const nextHoursDiv = document.querySelector('#hourlyTwo');
+ const afterHoursDiv = document.querySelector('#hourlyThree');
 form.addEventListener('submit', getWeather(latInput, longInput))
 
   function getWeather(lat, long) {
@@ -35,8 +23,6 @@ form.addEventListener('submit', getWeather(latInput, longInput))
     console.log("long" + long);
     fetch(apiWeatherUrl)
       .then(response => response.json())
-        //console.log(response.status);
-        //console.log(response.json());
       .then(data => {
         console.log(data);
         //forecastDiv.innerHTML = `Current Temperature: ${currentTempF}°F<br>In one hour it will be: ${nextTempF}°F`;
