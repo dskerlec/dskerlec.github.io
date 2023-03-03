@@ -12,7 +12,7 @@
  let date = new Date();
  let hour = getCurrentHour(date);
  getWeather(latInput, longInput)
-
+//testing branch
 
   function getWeather(lat, long) 
   {
