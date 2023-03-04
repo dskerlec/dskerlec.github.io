@@ -30,22 +30,32 @@
  let today;
  let todayHigh;
  let todayLow;
+ let todayCode;
+
  let tomorrow;
  let tomorrowHigh;
  let tomorrowLow;
+ let tomorrowCode;
+
  let overmorrow;
  let overmorrowHigh;
- let overmorrowLow
+ let overmorrowLow;
+ let overmorrowCode;
 
  let now;
  let nowTemp;
  let nowPrecip;
+ let nowCode;
+
  let next;
  let nextTemp;
  let nextPrecip;
+ let nextCode;
+
  let later;
  let laterTemp;
  let laterPrecip;
+ let laterCode;
 
  fetchWeather(apiWeatherUrl);
 
@@ -72,23 +82,28 @@ function parseWeatherData()
   today = getDay(weatherData, 0);
   todayHigh = getTemp(weatherData, "daily", 0, "max");
   todayLow = getTemp(weatherData, "daily", 0, "min");
+  todayCode = getWeatherCode(weatherData, "daily", 0);
+
   tomorrow = getDay(weatherData, 1);
   tomorrowHigh = getTemp(weatherData, "daily", 1, "max");
   tomorrowLow = getTemp(weatherData, "daily", 1, "min");
+  tomorrowCode = getWeatherCode(weatherData, "daily", 1);
+
   overmorrow = getDay(weatherData, 2);
   overmorrowHigh = getTemp(weatherData, "daily", 2, "max");
-  overmorrowLow = getTemp(weatherData, "daily", 1, "min");
+  overmorrowLow = getTemp(weatherData, "daily", 2, "min");
+  overmorrowCode = getWeatherCode(weatherData, "daily", 2);
+  console.log(overmorrowCode);
 
   //TODO: clean current time
   now = getHour(weatherData, hour);
   nowTemp = getTemp(weatherData, "hourly", hour);
-  //nowPrecip
+
   next = getHour(weatherData, (hour+3));
   nextTemp = getTemp(weatherData, "hourly", (hour+3));
-  //nextPrecip
+
   later = getHour(weatherData, (hour+6));
   laterTemp = getTemp(weatherData, "hourly", (hour+6));
-  //laterPrecip
 }
 
   function updateWeatherDisplay() {
@@ -114,6 +129,19 @@ function parseWeatherData()
           return data.daily.temperature_2m_min[timeInterval];
       case "hourly":
         return data.hourly.temperature_2m[timeInterval];
+      default:
+        //error
+    }
+  }
+
+  function getWeatherCode(data, forecastType, timeInterval)
+  {
+    switch (forecastType) 
+    {
+      case "daily":
+          return data.daily.weathercode[timeInterval];
+      case "hourly":
+        return data.hourly.weathercode[timeInterval];
       default:
         //error
     }
