@@ -39,13 +39,13 @@
 
  let now;
  let nowTemp;
- let nowPrecip;
+ let nowPrecipitation;
  let next;
  let nextTemp;
- let nextPrecip;
+ let nextPrecipitation;
  let later;
  let laterTemp;
- let laterPrecip;
+ let laterPrecipitation;
 
  fetchWeather(apiWeatherUrl);
 
@@ -82,13 +82,13 @@ function parseWeatherData()
   //TODO: clean current time
   now = getHour(weatherData, hour);
   nowTemp = getTemp(weatherData, "hourly", hour);
-  //nowPrecip
+  nowPrecipitation = getPrecipitation(weatherData, hour);
   next = getHour(weatherData, (hour+3));
   nextTemp = getTemp(weatherData, "hourly", (hour+3));
-  //nextPrecip
+  nextPrecipitation = getPrecipitation(weatherData, (hour+3));
   later = getHour(weatherData, (hour+6));
   laterTemp = getTemp(weatherData, "hourly", (hour+6));
-  //laterPrecip
+  laterPrecipitation = getPrecipitation(weatherData, (hour+6));
 }
 
   function updateWeatherDisplay() {
