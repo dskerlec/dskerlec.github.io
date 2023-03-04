@@ -39,13 +39,13 @@
 
  let now;
  let nowTemp;
- let nowPrecip;
+ let nowPrecipitation;
  let next;
  let nextTemp;
- let nextPrecip;
+ let nextPrecipitation;
  let later;
  let laterTemp;
- let laterPrecip;
+ let laterPrecipitation;
 
  fetchWeather(apiWeatherUrl);
 
@@ -82,13 +82,13 @@ function parseWeatherData()
   //TODO: clean current time
   now = getHour(weatherData, hour);
   nowTemp = getTemp(weatherData, "hourly", hour);
-  //nowPrecip
+  nowPrecipitation = getPrecipitation(weatherData, hour);
   next = getHour(weatherData, (hour+3));
   nextTemp = getTemp(weatherData, "hourly", (hour+3));
-  //nextPrecip
+  nextPrecipitation = getPrecipitation(weatherData, (hour+3));
   later = getHour(weatherData, (hour+6));
   laterTemp = getTemp(weatherData, "hourly", (hour+6));
-  //laterPrecip
+  laterPrecipitation = getPrecipitation(weatherData, (hour+6));
 }
 
   function updateWeatherDisplay() {
@@ -97,10 +97,15 @@ function parseWeatherData()
     tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F`
     overmorrowDiv.innerHTML = `${overmorrow} Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F`
     //TODO: update with precip codes
-    nowDiv.innerHTML = `At ${now} :<br>Current Temperature: ${nowTemp}°F<br>Current Precipitation:`
-    nextHoursDiv.innerHTML = `At ${next} :<br>Current Temperature: ${nextTemp}°F<br>Current Precipitation:`
-    laterHoursDiv.innerHTML = `At ${later} :<br>Current Temperature: ${laterTemp}°F<br>Current Precipitation:`
+    nowDiv.innerHTML = `At ${now} :<br>Current Temperature: ${nowTemp}°F<br>Current Precipitation:${nowPrecipitation}%`
+    nextHoursDiv.innerHTML = `At ${next} :<br>Current Temperature: ${nextTemp}°F<br>Current Precipitation:${nextPrecipitation}%`
+    laterHoursDiv.innerHTML = `At ${later} :<br>Current Temperature: ${laterTemp}°F<br>Current Precipitation:${laterPrecipitation}%`
   }
+
+//get daily precipitation
+function getPrecipitation(data, hour) {
+  return data.hourly.precipitation_probability[hour];
+}
 
   //break out into getDailyTemp and getHourlyTemp??
   function getTemp(data, forecastType, timeInterval, dailyType)
@@ -133,3 +138,5 @@ function parseWeatherData()
   {
     return data.hourly.time[hourIndex];
   }
+
+  
