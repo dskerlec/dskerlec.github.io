@@ -21,7 +21,6 @@ let hour = getCurrentHour(date);
 //TODO: update the long and lat to be dynamic for multi city weather capabilities
 //url for the api call
 
-
 //store weather data result in variable
 let weatherData;
 
@@ -45,7 +44,6 @@ let nextPrecipitation;
 let later;
 let laterTemp;
 let laterPrecipitation;
-
 
 function fetchWeather(apiUrl) {
   return fetch(apiUrl)
@@ -129,14 +127,16 @@ function getHour(data, hourIndex) {
 var userInput = document.getElementById("address-input");
 var searchBtn = document.getElementById("search");
 
-searchBtn.addEventListener('click', () => {
+searchBtn.addEventListener("click", () => {
   updateGeocoding(userInput.value)
-  .then(newCoordinates => {
-    console.log(newCoordinates);
-    let updatedUrl = updateWeatherUrl(newCoordinates.latitude, newCoordinates.longitude).apiWeatherUrl
-    console.log(updatedUrl);
-    console.log(fetchWeather(updatedUrl));
-  }).catch(error => {
-    console.error('Error:', error);
-  })
-})
+    .then((newCoordinates) => {
+      let updatedUrl = updateWeatherUrl(
+        newCoordinates.latitude,
+        newCoordinates.longitude
+      ).apiWeatherUrl;
+      fetchWeather(updatedUrl);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
