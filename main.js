@@ -1,4 +1,5 @@
 'use strict';
+import weatherDescriptions from "./constants.js";
 //TODO: allow user to select a city state and geocode it to return long/lat
 //possibly use a dropdown and store long/lat? or use another api call
 //TODO: possibly create these constants outside in a seperate file and import them in so it looks neater?
@@ -82,35 +83,37 @@ function parseWeatherData()
   today = getDay(weatherData, 0);
   todayHigh = getTemp(weatherData, "daily", 0, "max");
   todayLow = getTemp(weatherData, "daily", 0, "min");
-  todayCode = getWeatherCode(weatherData, "daily", 0);
+  todayCode = weatherDescriptions[getWeatherCode(weatherData, "daily", 0)];
 
   tomorrow = getDay(weatherData, 1);
   tomorrowHigh = getTemp(weatherData, "daily", 1, "max");
   tomorrowLow = getTemp(weatherData, "daily", 1, "min");
-  tomorrowCode = getWeatherCode(weatherData, "daily", 1);
+  tomorrowCode = weatherDescriptions[getWeatherCode(weatherData, "daily", 1)];
 
   overmorrow = getDay(weatherData, 2);
   overmorrowHigh = getTemp(weatherData, "daily", 2, "max");
   overmorrowLow = getTemp(weatherData, "daily", 2, "min");
-  overmorrowCode = getWeatherCode(weatherData, "daily", 2);
-  console.log(overmorrowCode);
+  overmorrowCode = weatherDescriptions[getWeatherCode(weatherData, "daily", 2)];
 
   //TODO: clean current time
   now = getHour(weatherData, hour);
   nowTemp = getTemp(weatherData, "hourly", hour);
+  nowCode = getWeatherCode(weatherData, "hourly", hour);
 
   next = getHour(weatherData, (hour+3));
   nextTemp = getTemp(weatherData, "hourly", (hour+3));
+  nextCode = getWeatherCode(weatherData, "hourly", (hour+3));
 
   later = getHour(weatherData, (hour+6));
   laterTemp = getTemp(weatherData, "hourly", (hour+6));
+  laterCode = getWeatherCode(weatherData, "hourly", (hour+6));
 }
 
   function updateWeatherDisplay() {
     //TODO:clean up actual dates
-    todayDiv.innerHTML = `${today}:<br>High Temperature: ${todayHigh}°F<br>Low Temperature: ${todayLow}°F`
-    tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F`
-    overmorrowDiv.innerHTML = `${overmorrow} Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F`
+    todayDiv.innerHTML = `${today}:<br>High Temperature: ${todayHigh}°F<br>Low Temperature: ${todayLow}°F and the conditions are: ${todayCode}`
+    tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F and the conditions are: ${tomorrowCode}`
+    overmorrowDiv.innerHTML = `${overmorrow} Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F and the conditions are: ${overmorrowCode}`
     //TODO: update with precip codes
     nowDiv.innerHTML = `At ${now} :<br>Current Temperature: ${nowTemp}°F<br>Current Precipitation:`
     nextHoursDiv.innerHTML = `At ${next} :<br>Current Temperature: ${nextTemp}°F<br>Current Precipitation:`
