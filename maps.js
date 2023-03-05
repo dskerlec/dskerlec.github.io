@@ -1,38 +1,24 @@
-var api_key = '966a0a57eeb345ed9ad20329e41f7556';
-var api_url = 'https://api.opencagedata.com/geocode/v1/json';
+var api_key = "966a0a57eeb345ed9ad20329e41f7556";
+var api_url = "https://api.opencagedata.com/geocode/v1/json";
 
-var userInput = document.getElementById('address-input');
-var searchBtn = document.getElementById('search');
+let apiWeatherUrl = "";
 
-searchBtn.addEventListener('click', function() {
-  var query = userInput.value;
+export function updateWeatherUrl(latitude, longitude) {
+  apiWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&timezone=EST&hourly=temperature_2m,precipitation_probability,weathercode,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch`;
+  return {apiWeatherUrl};
+}
 
-  var request_url = api_url
-    + '?'
-    + 'key=' + api_key
-    + '&q=' + encodeURIComponent(query)
-    + '&pretty=1'
-    + '&no_annotations=1';
+export function updateGeocoding(query) {
+  var request_url = api_url + "?" + "key=" + api_key + "&q=" + encodeURIComponent(query) + "&pretty=1" + "&no_annotations=1";
+  return fetch(request_url)
+    .then((response) => response.json())
+    .then((data) => {
+      let latitude = data.results[0].geometry.lat;
+      let longitude = data.results[0].geometry.lng;
+      return { latitude, longitude };
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
-  var request = new XMLHttpRequest();
-  request.open('GET', request_url, true);
-
-  request.onload = function() {
-    if (request.status === 200){
-      var data = JSON.parse(request.responseText);
-      console.log(data)
-      var latitude = data.results[0].geometry.lat;
-      var longitude = data.results[0].geometry.lng;
-      console.log('Latitude:', latitude);
-      console.log('Longitude:', longitude);
-    } else {
-      console.log("Error getting location data: ", request.statusText);
-    }
-  };
-
-  request.onerror = function() {
-    console.log("Error getting location data: network error");
-  };
-
-  request.send();
-});
