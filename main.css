@@ -5,8 +5,8 @@
   
 }
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: rgb(37, 58, 115);
   }
   
   h1 {
@@ -17,6 +17,11 @@ body {
     color: white;
   }
 
+  h2 {
+    font-size: 28px;
+    color: white;
+  }
+
   div #app {
     text-align: left;
   }
@@ -24,13 +29,15 @@ body {
   div .daily, .hourly {
     display: inline-block;
     color: var(--black);
-    background-color: rgb(126, 126, 203);
-    width: 15%;
-    border-width: 2px;
-    border-style: solid;
+    background-color: white;
+    width: 25%;
   }
   .daily-forecast-row .col-md-4, .hourly-forecast-row .col-md-4 {
     padding-top: 2rem;
     padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin: .5rem;
+    border-radius: 25px;
   }
  
