@@ -130,7 +130,7 @@ var userInput = document.getElementById("address-input");
 var searchBtn = document.getElementById("search");
 
 searchBtn.addEventListener('click', () => {
-  updateGeocoding(userInput.value);
+  updateGeocoding(userInput.value)
   .then(newCoordinates => {
     console.log(newCoordinates);
     let updatedUrl = updateWeatherUrl(newCoordinates.latitude, newCoordinates.longitude).apiWeatherUrl
