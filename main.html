@@ -11,23 +11,36 @@
   <div id="app" class="container">
 
     <h1>Weather App</h1>
-    <input type="text" id="address-input" placeholder="Enter a location">
+    <!-- TODO: default to Cleveland,Ohio -->
+    <input type="text" id="address-input" placeholder="Enter a location" value="Cleveland, Ohio">
     <button id="search">Search</button>
+    <div class="daily">
+      <h2> Daily Forecast:</h2>
+    </div>
     <div class="row daily-forecast-row">
-      <div class="col-12">
-        <h2> Daily Forecast:</h2>
+      <div id="dailyOne" class="weatherInfo">
+        <img id="todayImg" class="weatherImage">
       </div>
-      <div id="dailyOne" class="daily col-md-4"></div>
-      <div id="dailyTwo" class="daily col-md-4"></div>
-      <div id="dailyThree" class="daily col-md-4"></div>
+      <div id="dailyTwo" class="weatherInfo">
+        <img id="tomorrowImg" class="weatherImage">
+      </div>
+      <div id="dailyThree" class="weatherInfo">
+        <img id="overmorrowImg" class="weatherImage">
+      </div>
+    </div>
+    <div class="hourly">
+      <h2> Hourly Forecast:</h2>
     </div>
     <div class="row hourly-forecast-row">
-      <div class="col-12">
-        <h2> Hourly Forecast:</h2>
+      <div id="hourlyOne" class="weatherInfo">
+        <img id="nowImg" class="weatherImage">
       </div>
-      <div id="hourlyOne" class="hourly col-md-4"></div>
-      <div id="hourlyTwo" class="hourly col-md-4"></div>
-      <div id="hourlyThree" class="hourly col-md-4"></div>
+      <div id="hourlyTwo" class="weatherInfo">
+        <img id="nextHoursImg" class="weatherImage">
+      </div>
+      <div id="hourlyThree" class="weatherInfo">
+        <img id="laterHoursImg" class="weatherImage">
+      </div>
     </div>
     <div id="weather-info"></div>
   </div>
@@ -37,6 +50,7 @@
   </div>
 </body>
 <script src="main.js" type="module"></script>
+<script src="weatherDescriptions.js" type="module"></script>
 <script src="maps.js" type="module" ></script>
 
 

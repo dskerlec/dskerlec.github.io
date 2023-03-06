@@ -1,5 +1,5 @@
 :root {
-  font-size: 16px;
+  font-size: 18px;
 
   --black:#000;
   
@@ -26,18 +26,33 @@ body {
     text-align: left;
   }
 
-  div .daily, .hourly {
+
+  div .weatherInfo {
     display: inline-block;
     color: var(--black);
     background-color: white;
     width: 25%;
   }
-  .daily-forecast-row .col-md-4, .hourly-forecast-row .col-md-4 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin: .5rem;
+
+  .daily-forecast-row, .hourly-forecast-row {
+   display: flex;
+    justify-content: space-evenly;
+  }
+
+  .daily-forecast-row .weatherInfo, .hourly-forecast-row .weatherInfo {
+    width: 300px;
+    height: 200px;
+    padding: 2rem;
+    padding-bottom: 4rem;
+    margin: 1rem;
     border-radius: 25px;
+  }
+
+  .weatherImage {
+    width: 100%;
+    max-width: 200px;
+    max-height: 150px;
+    display: none;
+    margin: 1rem auto;
   }
  
