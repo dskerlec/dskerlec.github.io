@@ -10,6 +10,7 @@ import weatherDescriptions from "./constants.js";
 
  //query selectors for updating html
  const todayDiv = document.querySelector('#dailyOne');
+ const todayImg = document.getElementById('dailyImageOne');
  const tomorrowDiv = document.querySelector('#dailyTwo');
  const overmorrowDiv = document.querySelector('#dailyThree');
  const nowDiv = document.querySelector('#hourlyOne');
@@ -83,17 +84,20 @@ function parseWeatherData()
   today = getDay(weatherData, 0);
   todayHigh = getTemp(weatherData, "daily", 0, "max");
   todayLow = getTemp(weatherData, "daily", 0, "min");
-  todayCode = weatherDescriptions[getWeatherCode(weatherData, "daily", 0)];
+  todayCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).description;
+  //todayPicture = (weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).image;
+  console.log((weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).image);
+  console.log(todayImg);
 
   tomorrow = getDay(weatherData, 1);
   tomorrowHigh = getTemp(weatherData, "daily", 1, "max");
   tomorrowLow = getTemp(weatherData, "daily", 1, "min");
-  tomorrowCode = weatherDescriptions[getWeatherCode(weatherData, "daily", 1)];
+  tomorrowCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 1)]).description;
 
   overmorrow = getDay(weatherData, 2);
   overmorrowHigh = getTemp(weatherData, "daily", 2, "max");
   overmorrowLow = getTemp(weatherData, "daily", 2, "min");
-  overmorrowCode = weatherDescriptions[getWeatherCode(weatherData, "daily", 2)];
+  overmorrowCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 2)]).description;
 
   //TODO: clean current time
   now = getHour(weatherData, hour);
@@ -114,13 +118,14 @@ function parseWeatherData()
 
   function updateWeatherDisplay() {
     //TODO:clean up actual dates
-    todayDiv.innerHTML = `${today}:<br>High Temperature: ${todayHigh}°F<br>Low Temperature: ${todayLow}°F and the conditions are: ${todayCode}`
-    tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F and the conditions are: ${tomorrowCode}`
-    overmorrowDiv.innerHTML = `${overmorrow} Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F and the conditions are: ${overmorrowCode}`
+    todayDiv.innerHTML = `${today}:<br>High Temperature: ${todayHigh}°F<br>Low Temperature: ${todayLow}°F<br> the conditions are: ${todayCode}`
+    todayImg.src = "\images\weather_icons\sunny_icon.png";
+    tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F<br> the conditions are: ${tomorrowCode}`
+    overmorrowDiv.innerHTML = `${overmorrow} Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F<br> the conditions are: ${overmorrowCode}`
     //TODO: update with precip codes
-    nowDiv.innerHTML = `At ${now} :<br>Current Temperature: ${nowTemp}°F<br>Current Precipitation:${nowPrecipitation}%`
-    nextHoursDiv.innerHTML = `At ${next} :<br>Current Temperature: ${nextTemp}°F<br>Current Precipitation:${nextPrecipitation}%`
-    laterHoursDiv.innerHTML = `At ${later} :<br>Current Temperature: ${laterTemp}°F<br>Current Precipitation:${laterPrecipitation}%`
+    nowDiv.innerHTML = `At ${now} :<br>Current Temperature: ${nowTemp}°F<br>Precipitation Chance:${nowPrecipitation}%`
+    nextHoursDiv.innerHTML = `At ${next} :<br>Current Temperature: ${nextTemp}°F<br>Precipitation Chance:${nextPrecipitation}%`
+    laterHoursDiv.innerHTML = `At ${later} :<br>Current Temperature: ${laterTemp}°F<br>Precipitation Chance:${laterPrecipitation}%`
   }
 
 //get daily precipitation
