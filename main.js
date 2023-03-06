@@ -1,20 +1,28 @@
 "use strict";
-import weatherDescriptions from "./constants.js";
 //TODO: allow user to select a city state and geocode it to return long/lat
 //possibly use a dropdown and store long/lat? or use another api call
 //TODO: possibly create these constants outside in a seperate file and import them in so it looks neater?
 
 // Import functions from maps.js
 import { updateGeocoding, updateWeatherUrl } from "./maps.js";
+// Import object of weather description objects containing code and corresponding image
+import weatherDescriptions from "./weatherDescriptions.js";
 
 //query selectors for updating html
 const todayDiv = document.querySelector("#dailyOne");
- const todayImg = document.getElementById("dailyImageOne");
 const tomorrowDiv = document.querySelector("#dailyTwo");
 const overmorrowDiv = document.querySelector("#dailyThree");
 const nowDiv = document.querySelector("#hourlyOne");
 const nextHoursDiv = document.querySelector("#hourlyTwo");
 const laterHoursDiv = document.querySelector("#hourlyThree");
+const todayImg = document.querySelector("#todayImg");
+const tomorrowImg = document.querySelector("#tomorrowImg");
+const overmorrowImg = document.querySelector("#overmorrowImg");
+const nowImg = document.querySelector("#nowImg");
+const nextHoursImg = document.querySelector("#nextHoursImg");
+const laterHoursImg = document.querySelector("#laterHoursImg");
+
+let imgSelector = document.querySelectorAll(".weatherImage");
 
 //date stuff for getting current time stamps
 let date = new Date();
@@ -31,31 +39,37 @@ let weatherData;
  let todayHigh;
  let todayLow;
  let todayCode;
+ let todayImgPath;
 
  let tomorrow;
  let tomorrowHigh;
  let tomorrowLow;
  let tomorrowCode;
+ let tomorrowImgPath;
 
  let overmorrow;
  let overmorrowHigh;
  let overmorrowLow;
  let overmorrowCode;
+ let overmorrowImgPath;
 
  let now;
  let nowTemp;
  let nowPrecipitation;
  let nowCode;
+ let nowImgPath;
 
  let next;
  let nextTemp;
  let nextPrecipitation;
  let nextCode;
+ let nextImgPath;
 
  let later;
  let laterTemp;
  let laterPrecipitation;
  let laterCode;
+ let laterImgPath;
 
 function fetchWeather(apiUrl) {
   return fetch(apiUrl)
@@ -74,47 +88,68 @@ function parseWeatherData() {
   todayHigh = getTemp(weatherData, "daily", 0, "max");
   todayLow = getTemp(weatherData, "daily", 0, "min");
   todayCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).description;
-  //todayPicture = (weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).image;
-  console.log((weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).image);
-  console.log(todayImg);
+  todayImgPath = (weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).image;
+  todayImg.src = todayImgPath;
+  todayImg.style.display = "block";
 
   tomorrow = getDay(weatherData, 1);
   tomorrowHigh = getTemp(weatherData, "daily", 1, "max");
   tomorrowLow = getTemp(weatherData, "daily", 1, "min");
   tomorrowCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 1)]).description;
+  tomorrowImgPath = (weatherDescriptions[getWeatherCode(weatherData, "daily", 1)]).image;
+  tomorrowImg.src = tomorrowImgPath;
+  tomorrowImg.style.display = "block";
 
   overmorrow = getDay(weatherData, 2);
   overmorrowHigh = getTemp(weatherData, "daily", 2, "max");
   overmorrowLow = getTemp(weatherData, "daily", 2, "min");
   overmorrowCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 2)]).description;
+  overmorrowImgPath = (weatherDescriptions[getWeatherCode(weatherData, "daily", 2)]).image;
+  overmorrowImg.src = overmorrowImgPath;
+  overmorrowImg.style.display = "block";
 
   //TODO: clean current time
   now = getHour(weatherData, hour);
   nowTemp = getTemp(weatherData, "hourly", hour);
   nowPrecipitation = getPrecipitation(weatherData, hour);
   nowCode = getWeatherCode(weatherData, "hourly", hour);
+  nowImgPath = (weatherDescriptions[getWeatherCode(weatherData, "hourly", hour)]).image;
+  nowImg.src = nowImgPath;
+  nowImg.style.display = "block";
 
   next = getHour(weatherData, hour + 3);
   nextTemp = getTemp(weatherData, "hourly", hour + 3);
   nextPrecipitation = getPrecipitation(weatherData, hour + 3);
   nextCode = getWeatherCode(weatherData, "hourly", hour + 3);
+  nextImgPath = (weatherDescriptions[getWeatherCode(weatherData, "hourly", hour + 3)]).image;
+  nextHoursImg.src = nextImgPath;
+  nextHoursImg.style.display = "block";
 
   later = getHour(weatherData, hour + 6);
   laterTemp = getTemp(weatherData, "hourly", hour + 6);
   laterPrecipitation = getPrecipitation(weatherData, hour + 6);
   laterCode = getWeatherCode(weatherData, "hourly", hour + 6);
+  laterImgPath = (weatherDescriptions[getWeatherCode(weatherData, "hourly", hour + 6)]).image;
+  laterHoursImg.src = laterImgPath;
+  laterHoursImg.alt = `${(weatherDescriptions[getWeatherCode(weatherData, "hourly", hour + 6)]).description} icon`;
+  laterHoursImg.style.display = "block";
 }
 
 function updateWeatherDisplay() {
   //TODO:clean up actual dates
   todayDiv.innerHTML = `${today}:<br>High Temperature: ${todayHigh}°F<br>Low Temperature: ${todayLow}°F<br> the conditions are: ${todayCode}`;
-  todayImg.src = "\images\weather_icons\sunny_icon.png";
-    tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F<br> the conditions are: ${tomorrowCode}`;
+  todayDiv.appendChild(todayImg);
+  tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F<br> the conditions are: ${tomorrowCode}`;
+  tomorrowDiv.appendChild(tomorrowImg);
   overmorrowDiv.innerHTML = `${overmorrow} Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F<br> the conditions are: ${overmorrowCode}`;
+  overmorrowDiv.appendChild(overmorrowImg);
   //TODO: update with precip codes
   nowDiv.innerHTML = `At ${now} :<br>Current Temperature: ${nowTemp}°F<br>Precipitation Chance:${nowPrecipitation}%`;
+  nowDiv.appendChild(nowImg);
   nextHoursDiv.innerHTML = `At ${next} :<br>Current Temperature: ${nextTemp}°F<br>Precipitation Chance:${nextPrecipitation}%`;
+  nextHoursDiv.appendChild(nextHoursImg);
   laterHoursDiv.innerHTML = `At ${later} :<br>Current Temperature: ${laterTemp}°F<br>Precipitation Chance:${laterPrecipitation}%`;
+  laterHoursDiv.appendChild(laterHoursImg);
 }
 
 //get daily precipitation
