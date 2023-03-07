@@ -1,12 +1,10 @@
 "use strict";
-//TODO: allow user to select a city state and geocode it to return long/lat
-//possibly use a dropdown and store long/lat? or use another api call
-//TODO: possibly create these constants outside in a seperate file and import them in so it looks neater?
-
 // Import functions from maps.js
 import { updateGeocoding, updateWeatherUrl } from "./maps.js";
 // Import object of weather description objects containing code and corresponding image
 import weatherDescriptions from "./weatherDescriptions.js";
+//Import weather classes
+import { DailyWeather, HourlyWeather, getPrecipitation, getTemp, getWeatherCode, getWindSpeed, getPrecipSum, getSunrise, getSunset } from "./weather.js";
 
 //query selectors for updating html
 const todayDiv = document.querySelector("#dailyOne");
@@ -22,167 +20,134 @@ const nowImg = document.querySelector("#nowImg");
 const nextHoursImg = document.querySelector("#nextHoursImg");
 const laterHoursImg = document.querySelector("#laterHoursImg");
 
-let imgSelector = document.querySelectorAll(".weatherImage");
-
 //date stuff for getting current time stamps
 let date = new Date();
+let dayIndex = date.getDay();
 let hour = getCurrentHour(date);
 
-//TODO: update the long and lat to be dynamic for multi city weather capabilities
-//url for the api call
 
 //store weather data result in variable
 let weatherData;
 
- //weather data variables to be set
- let today;
- let todayHigh;
- let todayLow;
- let todayCode;
- let todayImgPath;
+//weather data variables to be set
+let todayForecast = new DailyWeather(dayIndex);
+let tomorrowForecast = new DailyWeather(dayIndex + 1);
+let overmorrowForecast = new DailyWeather(dayIndex + 2);
 
- let tomorrow;
- let tomorrowHigh;
- let tomorrowLow;
- let tomorrowCode;
- let tomorrowImgPath;
-
- let overmorrow;
- let overmorrowHigh;
- let overmorrowLow;
- let overmorrowCode;
- let overmorrowImgPath;
-
- let now;
- let nowTemp;
- let nowPrecipitation;
- let nowCode;
- let nowImgPath;
-
- let next;
- let nextTemp;
- let nextPrecipitation;
- let nextCode;
- let nextImgPath;
-
- let later;
- let laterTemp;
- let laterPrecipitation;
- let laterCode;
- let laterImgPath;
+let nowForecast = new HourlyWeather(hour);
+let nextForecast = new HourlyWeather(hour + 3);
+let laterForecast = new HourlyWeather(hour + 6);
+let forecasts = [todayForecast, tomorrowForecast, overmorrowForecast, nowForecast, nextForecast, laterForecast];
 
 function fetchWeather(apiUrl) {
   return fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
       weatherData = data;
-      //NOTE we can call any function in here now that needs weather data or see above
-      parseWeatherData();
-      updateWeatherDisplay();
+      forecasts.forEach(setWeatherData);
+      forecasts.forEach(updateImageInformation);
+      forecasts.forEach(displayWeatherData);
     })
     .catch((error) => console.error(error));
 }
 
-function parseWeatherData() {
-  today = getDay(weatherData, 0);
-  todayHigh = getTemp(weatherData, "daily", 0, "max");
-  todayLow = getTemp(weatherData, "daily", 0, "min");
-  todayCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).description;
-  todayImgPath = (weatherDescriptions[getWeatherCode(weatherData, "daily", 0)]).image;
-  todayImg.src = todayImgPath;
-  todayImg.style.display = "block";
-
-  tomorrow = getDay(weatherData, 1);
-  tomorrowHigh = getTemp(weatherData, "daily", 1, "max");
-  tomorrowLow = getTemp(weatherData, "daily", 1, "min");
-  tomorrowCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 1)]).description;
-  tomorrowImgPath = (weatherDescriptions[getWeatherCode(weatherData, "daily", 1)]).image;
-  tomorrowImg.src = tomorrowImgPath;
-  tomorrowImg.style.display = "block";
-
-  overmorrow = getDay(weatherData, 2);
-  overmorrowHigh = getTemp(weatherData, "daily", 2, "max");
-  overmorrowLow = getTemp(weatherData, "daily", 2, "min");
-  overmorrowCode = (weatherDescriptions[getWeatherCode(weatherData, "daily", 2)]).description;
-  overmorrowImgPath = (weatherDescriptions[getWeatherCode(weatherData, "daily", 2)]).image;
-  overmorrowImg.src = overmorrowImgPath;
-  overmorrowImg.style.display = "block";
-
-  //TODO: clean current time
-  now = getHour(weatherData, hour);
-  nowTemp = getTemp(weatherData, "hourly", hour);
-  nowPrecipitation = getPrecipitation(weatherData, hour);
-  nowCode = getWeatherCode(weatherData, "hourly", hour);
-  nowImgPath = (weatherDescriptions[getWeatherCode(weatherData, "hourly", hour)]).image;
-  nowImg.src = nowImgPath;
-  nowImg.style.display = "block";
-
-  next = getHour(weatherData, hour + 3);
-  nextTemp = getTemp(weatherData, "hourly", hour + 3);
-  nextPrecipitation = getPrecipitation(weatherData, hour + 3);
-  nextCode = getWeatherCode(weatherData, "hourly", hour + 3);
-  nextImgPath = (weatherDescriptions[getWeatherCode(weatherData, "hourly", hour + 3)]).image;
-  nextHoursImg.src = nextImgPath;
-  nextHoursImg.style.display = "block";
-
-  later = getHour(weatherData, hour + 6);
-  laterTemp = getTemp(weatherData, "hourly", hour + 6);
-  laterPrecipitation = getPrecipitation(weatherData, hour + 6);
-  laterCode = getWeatherCode(weatherData, "hourly", hour + 6);
-  laterImgPath = (weatherDescriptions[getWeatherCode(weatherData, "hourly", hour + 6)]).image;
-  laterHoursImg.src = laterImgPath;
-  laterHoursImg.alt = `${(weatherDescriptions[getWeatherCode(weatherData, "hourly", hour + 6)]).description} icon`;
-  laterHoursImg.style.display = "block";
-}
-
-function updateWeatherDisplay() {
-  //TODO:clean up actual dates
-  todayDiv.innerHTML = `${today}:<br>High Temperature: ${todayHigh}°F<br>Low Temperature: ${todayLow}°F<br> the conditions are: ${todayCode}`;
-  todayDiv.appendChild(todayImg);
-  tomorrowDiv.innerHTML = `${tomorrow} Temperatures:<br>High Temperature: ${tomorrowHigh}°F<br>Low Temperature: ${tomorrowLow}°F<br> the conditions are: ${tomorrowCode}`;
-  tomorrowDiv.appendChild(tomorrowImg);
-  overmorrowDiv.innerHTML = `${overmorrow} Temperatures:<br>High Temperature: ${overmorrowHigh}°F<br>Low Temperature: ${overmorrowLow}°F<br> the conditions are: ${overmorrowCode}`;
-  overmorrowDiv.appendChild(overmorrowImg);
-  //TODO: update with precip codes
-  nowDiv.innerHTML = `At ${now} :<br>Current Temperature: ${nowTemp}°F<br>Precipitation Chance:${nowPrecipitation}%`;
-  nowDiv.appendChild(nowImg);
-  nextHoursDiv.innerHTML = `At ${next} :<br>Current Temperature: ${nextTemp}°F<br>Precipitation Chance:${nextPrecipitation}%`;
-  nextHoursDiv.appendChild(nextHoursImg);
-  laterHoursDiv.innerHTML = `At ${later} :<br>Current Temperature: ${laterTemp}°F<br>Precipitation Chance:${laterPrecipitation}%`;
-  laterHoursDiv.appendChild(laterHoursImg);
-}
-
-//get daily precipitation
-function getPrecipitation(data, hour) {
-  return data.hourly.precipitation_probability[hour];
-}
-
-//break out into getDailyTemp and getHourlyTemp??
-function getTemp(data, forecastType, timeInterval, dailyType) {
-  switch (forecastType) {
-    case "daily":
-      if (dailyType === "max")
-        return data.daily.temperature_2m_max[timeInterval];
-      else return data.daily.temperature_2m_min[timeInterval];
-    case "hourly":
-      return data.hourly.temperature_2m[timeInterval];
-    default:
-    //error
+function setWeatherData(forecast){
+  if (forecast.type === "Daily"){
+    let date = new Date(getDay(weatherData, forecast.dayClassification));
+    forecast.date = date.toDateString();
+    forecast.highTemp = getTemp(weatherData, forecast.type, forecast.dayClassification, "max");
+    forecast.lowTemp = getTemp(weatherData, forecast.type, forecast.dayClassification, "min");
+    forecast.weatherCode = getWeatherCode(weatherData, forecast.type, forecast.dayClassification);
+    forecast.precipChance = getPrecipitation(weatherData,forecast.type, forecast.dayClassification);
+    forecast.precipSum = getPrecipSum(weatherData, forecast.dayClassification);
+    let sunriseTime = new Date(getSunrise(weatherData, forecast.dayClassification));
+    let sunsetTime = new Date(getSunset(weatherData, forecast.dayClassification));
+    forecast.sunrise = sunriseTime.toLocaleTimeString();
+    forecast.sunset = sunsetTime.toLocaleTimeString();
   }
+  else if (forecast.type === "Hourly"){
+    let time = new Date(getHour(weatherData, forecast.timeClassification));
+    forecast.time = time.toLocaleString();
+    forecast.temp = getTemp(weatherData, forecast.type, forecast.timeClassification);
+    forecast.precipChance = getPrecipitation(weatherData, forecast.type, forecast.timeClassification);
+    forecast.weatherCode = getWeatherCode(weatherData, forecast.type, forecast.timeClassification);
+    forecast.windSpeed = getWindSpeed(weatherData, forecast.timeClassification);
+  }
+  forecast.conditionsDescription = (weatherDescriptions[forecast.weatherCode]).description;
+  forecast.conditionsImg = (weatherDescriptions[forecast.weatherCode]).image;
 }
 
-  function getWeatherCode(data, forecastType, timeInterval)
-  {
-    switch (forecastType) 
-    {
-      case "daily":
-          return data.daily.weathercode[timeInterval];
-      case "hourly":
-        return data.hourly.weathercode[timeInterval];
+function updateImageInformation(forecast) {
+  let img = getCorrespondingImg(forecast);
+  img.src = forecast.conditionsImg;
+  img.alt = `${(weatherDescriptions[forecast.weatherCode]).description} icon`
+  img.style.display = "block";
+}
+
+function displayWeatherData(forecast) {
+  let div = getCorrespondingDiv(forecast);
+  let img = getCorrespondingImg(forecast);
+  if (forecast.type === "Daily") {
+        //TODO: only show precipSum if precipChance > 50%
+    div.innerHTML = `${forecast.date}:<br>High Temperature: ${forecast.highTemp}°F<br>Low Temperature: ${forecast.lowTemp}°F<br>${forecast.conditionsDescription} with ${forecast.precipChance}% chance of precipitation of about ${forecast.precipSum} inches.<br>Sunrise at ${forecast.sunrise} and sunset at ${forecast.sunset}.`;
+  }
+  else {
+    div.innerHTML = `On ${forecast.time} :<br>Temperature: ${forecast.temp}°F<br>Precipitation Chance:${forecast.precipChance}%<br>and ${forecast.windSpeed} mph winds`;
+  }
+  div.appendChild(img);
+}
+
+function getCorrespondingDiv(forecast) {
+  if (forecast.type === "Daily") {
+    switch (forecast.dayClassification) {
+      case dayIndex:
+        return todayDiv;
+      case dayIndex + 1: 
+        return tomorrowDiv;
+      case dayIndex + 2:
+        return overmorrowDiv;
       default:
-        //error
+      //error
     }
   }
+  else {
+    switch (forecast.timeClassification)
+    {
+      case hour:
+        return nowDiv;
+      case hour + 3:
+        return nextHoursDiv;
+      case hour + 6:
+        return laterHoursDiv;
+    }
+  }
+}
+
+function getCorrespondingImg(forecast) {
+  if (forecast.type === "Daily") {
+    switch (forecast.dayClassification) {
+      case dayIndex:
+        return todayImg;
+      case dayIndex + 1: 
+        return tomorrowImg;
+      case dayIndex + 2:
+        return overmorrowImg;
+      default:
+      //error
+    }
+  }
+  else {
+    switch (forecast.timeClassification)
+    {
+      case hour:
+        return nowImg;
+      case hour + 3:
+        return nextHoursImg;
+      case hour + 6:
+        return laterHoursImg;
+    }
+  }
+}
 
 function getCurrentHour(date) {
   return date.getHours();
@@ -197,7 +162,6 @@ function getHour(data, hourIndex) {
 }
 
 // This button updates the longitutde/latitude in the query url
-
 var userInput = document.getElementById("address-input");
 var searchBtn = document.getElementById("search");
 
