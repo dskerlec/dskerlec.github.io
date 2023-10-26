@@ -1,0 +1,24 @@
+#featured-container {
+    border: 2px solid black;
+    border-radius: 25px;
+    background-color: gray;
+    padding: 1rem 1rem 2rem 1rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#featuredTitle {
+    text-align: center;
+    margin: 0 .5rem .5rem .5rem;
+}
+
+#featured-plans {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: .5rem;
+}
+
+.plan {
+    width: 30%;
+}

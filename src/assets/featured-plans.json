@@ -1,0 +1,20 @@
+[
+    {
+      "planName": "Plan 1",
+      "description": "Description 1",
+      "duration": 6,
+      "frequency": 2
+    },
+    {
+      "planName": "Plan 2",
+      "description": "Description 2",
+      "duration": 4,
+      "frequency": 3
+    },
+    {
+      "planName": "Plan 3",
+      "description": "Description 3",
+      "duration": 6,
+      "frequency": 5
+    }
+]

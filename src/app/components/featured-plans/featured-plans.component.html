@@ -1,0 +1,8 @@
+<div id="featured-container">
+    <h2 id="featuredTitle"> {{ featuredTitle }}</h2>
+    <div  id="featured-plans">
+        <div class="plan" *ngFor="let plan of featuredPlans">
+            <app-plan [plan]="plan"></app-plan>
+        </div>
+    </div>
+</div>
