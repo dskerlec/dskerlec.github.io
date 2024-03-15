@@ -1,12 +1,164 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="utf-8">
-  <title>FitMate</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-<style>html,body{margin:0;padding:0}</style><link rel="stylesheet" href="styles.70e9ccdf5f904dca.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.70e9ccdf5f904dca.css"></noscript></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lasky Landscaping</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-  <app-root></app-root>
-<script src="runtime.22fb1858c4315ee7.js" type="module"></script><script src="polyfills.91a1f9d9e58f7d02.js" type="module"></script><script src="main.8d1599e61503b256.js" type="module"></script>
+    <header class="container-fluid">
+        <div class="row align-items-center">
+          <!-- Logo/Title Column -->
+          <div class="col-md-4 align-items-center left-col d-flex">
+            <img class="logo" src="./assets/bglessasset.png"></img>
+            <h1>Lasky<br>Landscaping</h1>
+          </div>
+          <!-- Navigation Column -->
+          <div class="col-md-8">
+            <nav>
+              <ul class="nav justify-content-end">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
 
-</body></html>
+   <!-- Home Section -->
+<section id="home" class="home-section">
+    <div class="video-container">
+      <!-- <video autoplay muted loop class="video-background">
+        <source src="./assets/snowremoval.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video> -->
+      <div class="content">
+        <h2>No Job is Too Big or Too Small For The Professionals at Lasky Landscaping</h2>
+        <p>Your dream landscape is just a call away. Let us bring your outdoor vision to life.</p>
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <h2 class="text-center">Services</h2>
+      <div class="row">
+        <!-- Concrete Service -->
+        <div class="col-md-4 service-item">
+          <img src="./assets/drivewayswirl.jpg" alt="Concrete Service" class="service-img">
+          <h3>Concrete</h3>
+          <p>Expert concrete solutions for driveways, walkways, and patios to enhance your property's appeal.</p>
+        </div>
+         <!-- Snow Plow Service -->
+         <div class="col-md-4 service-item">
+          <video class="service-video" autoplay muted loop>
+            <source src="./assets/snowremoval.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <h3>Snow Plow & Salting</h3>
+          <p>Reliable snow plow services to keep your pathways clear and safe during the winter months.</p>
+        </div>
+        <!-- Landscaping Service -->
+        <div class="col-md-4 service-item">
+          <img src="path_to_landscaping_image.jpg" alt="Landscaping Service" class="service-img">
+          <h3>Landscaping</h3>
+          <p>Professional landscaping services to create your perfect outdoor sanctuary.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+<section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="text-center">Projects</h2>
+  
+      <!-- Concrete Projects -->
+      <div class="row project-category">
+        <div class="col-md-6 residential-projects text-center">
+          <img src="./assets/decorativepath.jpg" alt="Residential Concrete Project 1">
+          <img src="./assets/drivewaylong.jpg" alt="Residential Concrete Project 2">
+        </div>
+        <div class="col-md-6 commercial-projects text-center">
+          <img src="./assets/commericalwalkway.jpg" alt="Commercial Concrete Project 1">
+          <img src="./assets/setupwire.jpg" alt="Commercial Concrete Project 2">
+        </div>
+      </div>
+  
+      <!-- Landscaping Projects -->
+      <!-- <div class="row project-category">
+        <h3 class="col-12 text-center">Landscaping Projects</h3>
+        <div class="col-12">
+          <img src="path_to_landscaping_project_image_1.jpg" alt="Landscaping Project 1">
+          <img src="path_to_landscaping_project_image_2.jpg" alt="Landscaping Project 2">
+        </div>
+      </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+      <h2 class="text-center">Contact Us</h2>
+      <div class="row">
+        <!-- Contact Form   https://web3forms.com/ -->
+        <div class="col-md-6">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" class="form-control" id="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" id="message" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+        <!-- Business Contact Information -->
+        <div class="col-md-6">
+          <h3>Lasky Landscaping</h3>
+          <p>1234 Greenway Drive<br>
+          Landscaping City, LC 12345</p>
+          <p>Email: contact@laskylandscaping.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2024 Lasky Landscaping. All rights reserved.</p>
+      <p>1234 Greenway Drive, Landscaping City, LC 12345</p>
+      <p>Email: contact@laskylandscaping.com | Phone: (123) 456-7890</p>
+    </div>
+  </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
