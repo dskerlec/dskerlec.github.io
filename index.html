@@ -9,17 +9,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- TODO: SEO and update data to be correct -->
     <header class="container-fluid">
         <div class="row align-items-center">
           <!-- Logo/Title Column -->
           <div class="col-md-4 align-items-center left-col d-flex">
-            <img class="logo" src="./assets/bglessasset.png"></img>
-            <h1>Lasky<br>Landscaping</h1>
+            <a href="#home">
+              <img class="logo" src="./assets/bglessasset.png">
+            </a>
+            <a href="#home">
+              <h1>Lasky<br>Landscaping</h1>
+            </a>
           </div>
           <!-- Navigation Column -->
           <div class="col-md-8">
             <nav>
-              <ul class="nav justify-content-end">
+              <ul class="nav">
                 <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
@@ -32,44 +37,45 @@
 
    <!-- Home Section -->
 <section id="home" class="home-section">
-    <div class="video-container">
-      <!-- <video autoplay muted loop class="video-background">
-        <source src="./assets/snowremoval.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video> -->
-      <div class="content">
-        <h2>No Job is Too Big or Too Small For The Professionals at Lasky Landscaping</h2>
-        <p>Your dream landscape is just a call away. Let us bring your outdoor vision to life.</p>
-        <a href="#contact" class="btn btn-primary">Get in Touch</a>
-      </div>
+  <div class="intro">
+    <div class="content text-center">
+      <h2>No job is too big or small for the professionals at Lasky Landscaping</h2>
+      <p>Give us a call today. Let us bring your outdoor vision to life.</p>
+      <a href="#contact" class="btn btn-primary">Get a free quote today!</a>
+    </div>
+  </div>
+    <div class="media-container">
     </div>
   </section>
 
   <!-- Services Section -->
   <section id="services" class="services-section">
     <div class="container">
-      <h2 class="text-center">Services</h2>
+      <h2 class="text-center">We cover all of your outdoor needs!</h2>
       <div class="row">
         <!-- Concrete Service -->
-        <div class="col-md-4 service-item">
-          <img src="./assets/drivewayswirl.jpg" alt="Concrete Service" class="service-img">
-          <h3>Concrete</h3>
-          <p>Expert concrete solutions for driveways, walkways, and patios to enhance your property's appeal.</p>
+        <div class="col-md-4 service-item text-center">
+          <div class="service-col">
+            <img src="./assets/drivewayswirl.jpg" alt="Concrete Service" class="service-img">
+            <h3>Concrete</h3>  
+            <p>Expert concrete solutions for driveways, walkways, and patios to enhance your property's appeal.</p>
+          </div>
         </div>
-         <!-- Snow Plow Service -->
-         <div class="col-md-4 service-item">
-          <video class="service-video" autoplay muted loop>
-            <source src="./assets/snowremoval.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <h3>Snow Plow & Salting</h3>
-          <p>Reliable snow plow services to keep your pathways clear and safe during the winter months.</p>
+        
+        <div class="col-md-4 service-item text-center">
+          <div class="service-col">  
+            <img src="./assets/snowsquare.png" alt="Snowplowing Service" class="service-img">
+            <h3>Snow Plow & Salting</h3>
+            <p>Reliable snow plow services to keep your pathways clear and safe during the winter months.</p> 
+          </div>
         </div>
-        <!-- Landscaping Service -->
-        <div class="col-md-4 service-item">
-          <img src="path_to_landscaping_image.jpg" alt="Landscaping Service" class="service-img">
-          <h3>Landscaping</h3>
-          <p>Professional landscaping services to create your perfect outdoor sanctuary.</p>
+        
+        <div class="col-md-4 service-item text-center">
+          <div class="service-col">
+            <img src="./assets/sewerconcrete.jpg" alt="Landscaping Service" class="service-img">
+            <h3>Landscaping</h3>
+            <p>Professional landscaping services to create your perfect outdoor sanctuary.</p>
+          </div> 
         </div>
       </div>
     </div>
@@ -83,23 +89,14 @@
       <!-- Concrete Projects -->
       <div class="row project-category">
         <div class="col-md-6 residential-projects text-center">
-          <img src="./assets/decorativepath.jpg" alt="Residential Concrete Project 1">
-          <img src="./assets/drivewaylong.jpg" alt="Residential Concrete Project 2">
+          <img src="./assets/decorativepath.jpg" class="project-img" alt="Residential Concrete Project 1">
+          <img src="./assets/drivewaylong.jpg" class="project-img" alt="Residential Concrete Project 2">
         </div>
         <div class="col-md-6 commercial-projects text-center">
-          <img src="./assets/commericalwalkway.jpg" alt="Commercial Concrete Project 1">
-          <img src="./assets/setupwire.jpg" alt="Commercial Concrete Project 2">
+          <img src="./assets/commericalwalkway.jpg" class="project-img" alt="Commercial Concrete Project 1">
+          <img src="./assets/setupwire.jpg" class="project-img" alt="Commercial Concrete Project 2">
         </div>
       </div>
-  
-      <!-- Landscaping Projects -->
-      <!-- <div class="row project-category">
-        <h3 class="col-12 text-center">Landscaping Projects</h3>
-        <div class="col-12">
-          <img src="path_to_landscaping_project_image_1.jpg" alt="Landscaping Project 1">
-          <img src="path_to_landscaping_project_image_2.jpg" alt="Landscaping Project 2">
-        </div>
-      </div> -->
       </div>
     </div>
   </section>
@@ -109,7 +106,7 @@
     <div class="container">
       <h2 class="text-center">Contact Us</h2>
       <div class="row">
-        <!-- Contact Form   https://web3forms.com/ -->
+        <!-- TODO: Implement Contact Form   https://web3forms.com/ -->
         <div class="col-md-6">
           <form>
             <div class="form-group">
@@ -136,8 +133,8 @@
           </form>
         </div>
         <!-- Business Contact Information -->
-        <div class="col-md-6">
-          <h3>Lasky Landscaping</h3>
+        <div class="col-md-6 text-center contact-info">
+          <h4>Lasky Landscaping</h4>
           <p>1234 Greenway Drive<br>
           Landscaping City, LC 12345</p>
           <p>Email: contact@laskylandscaping.com</p>
