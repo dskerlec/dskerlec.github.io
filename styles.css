@@ -83,6 +83,20 @@ nav a {
   }
 }
 
+  @media (max-width: 365px) {
+    div.container {
+      padding-left: 0;
+    }
+  
+    a.navbar-brand {
+      padding-left: 0;
+    }
+  
+    header.sticky-top {
+      padding: 0;
+    }
+}
+
 /* Sections */
 section {
   padding: 2rem;
