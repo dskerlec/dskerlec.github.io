@@ -1,202 +1,202 @@
 /* Reset and basic styles */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    scroll-padding-top: 105px;
-  }
-  
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-padding-top: 105px;
+}
 
-  .bg-light { 
-    background-color: #E5E5E5 !important;
-  }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
 
-  .bg-dark {
-    background-color: #14213D !important;
-  }
-  
-  /* Header and navigation */
-  header {
-    background-color: #e97800;
-    color: #fff;
-    padding: 1rem;
-  }
+.bg-light { 
+  background-color: #E5E5E5 !important;
+}
 
-  .header-txt {
-    color: #212529;
-  }
+.bg-dark {
+  background-color: #14213D !important;
+}
 
-  .logo-img {
-    width: 50px;
-    height: auto;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    display: flex;
-  }
-  
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-  }
+/* Header and navigation */
+header {
+  background-color: #e97800;
+  color: #fff;
+  padding: 1rem;
+}
 
-  .navbar-dark .navbar-nav .nav-link {
-    color: #333;
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-  
-  .navbar-dark .navbar-nav .nav-link:hover {
-    color: #000;
-  }
-  
-  .navbar-brand {
-    font-size: 1.75rem;
-    font-weight: 700;
-  }
+.header-txt {
+  color: #212529;
+}
 
+.logo-img {
+  width: 50px;
+  height: auto;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #000;
+}
+
+.navbar-brand {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.navbar-toggler {
+  background-color: #212529;
+}
+
+@media (max-width: 767px) {
   .navbar-toggler {
-    background-color: #212529;
+    order: 1;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  @media (max-width: 767px) {
-    .navbar-toggler {
-      order: 1;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  
-    .navbar-collapse {
-      order: 2;
-      width: 100%;
-    }
-  
-    .navbar-nav {
-      justify-content: center;
-      width: 100%;
-    }
-  }
-  
-  /* Sections */
-  section {
-    padding: 2rem;
-  }
-
-  .media-container {
-    height: 400px;
-    background-image: url('./assets/llc.jpg');
-    background-size: cover; /* Cover the entire section */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-position: center; /* Center the image in the section */
-    margin: 20px;
-    border: 1px;
-    border-radius: 15px;
-  }
-
-  .card-body {
-    color: #E5E5E5;
-    background-color: #14213D !important;
+  .navbar-collapse {
+    order: 2;
     width: 100%;
   }
-  
-  #home {
-    background-color: #f4f4f4;
-    text-align: center;
+
+  .navbar-nav {
+    justify-content: center;
+    width: 100%;
   }
-  
-  .service, .project {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  
+}
+
+/* Sections */
+section {
+  padding: 2rem;
+}
+
+.media-container {
+  height: 400px;
+  background-image: url('./assets/llc.jpg');
+  background-size: cover; /* Cover the entire section */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center; /* Center the image in the section */
+  margin: 20px;
+  border: 1px;
+  border-radius: 15px;
+}
+
+.card-body {
+  color: #E5E5E5;
+  background-color: #14213D !important;
+  width: 100%;
+}
+
+#home {
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.service, .project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.service img, .project img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+input, textarea {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+button[type="submit"] {
+  background-color: #e97800;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background-color: #e97800;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Transitions */
+.transition {
+  transition: transform 0.3s ease;
+}
+
+.transition:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
   .service img, .project img {
     max-width: 100%;
     height: auto;
   }
-  
-  /* Form */
-  form {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  label {
-    margin-bottom: 0.5rem;
-  }
-  
-  input, textarea {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  button[type="submit"] {
-    background-color: #e97800;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #e97800;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-  }
-  
-  /* Transitions */
-  .transition {
-    transition: transform 0.3s ease;
-  }
-  
-  .transition:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 767px) {
-    .service img, .project img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-  
-  /* Primary Color */
-  .bg-primary {
-    background-color: #e97800 !important;
-  }
-  
-  .text-primary {
-    color: #e97800 !important;
-  }
-  
-  a {
-    color: #e97800;
-  }
-  
-  a:hover {
-    color: #FFF !important;
-  }
-  
-  .btn-primary {
-    background-color: #e97800;
-    border-color: #e97800;
-    color: #14213D !important;
-  }
-  
-  .btn-primary:hover {
-    background-color: #14213D;
-    border-color: #14213D;
-    color: #FFF !important;
-  }
+}
+
+/* Primary Color */
+.bg-primary {
+  background-color: #e97800 !important;
+}
+
+.text-primary {
+  color: #e97800 !important;
+}
+
+a {
+  color: #e97800;
+}
+
+a:hover {
+  color: #FFF !important;
+}
+
+.btn-primary {
+  background-color: #e97800;
+  border-color: #e97800;
+  color: #14213D !important;
+}
+
+.btn-primary:hover {
+  background-color: #14213D;
+  border-color: #14213D;
+  color: #FFF !important;
+}
