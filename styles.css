@@ -1,145 +1,202 @@
-/* Global Styles: */
-:root {
-    /* Add these styles to your global stylesheet, which is used across all site pages. You only need to do this once. All elements in the library derive their variables and base styles from this central sheet, simplifying site-wide edits. For instance, if you want to modify how your h2's appear across the site, you just update it once in the global styles, and the changes apply everywhere. */
-    /* --primary: #FCA311; */
-    --primary: #e97800;
-    --secondary: #14213D;
-    --black: #000000;
-    --plat: #E5E5E5;
-    --white: #FFFFFF;
-}
-
-html {
-  scroll-padding-top: 115px;
-}
-
-body {
+/* Reset and basic styles */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+    scroll-padding-top: 105px;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+  }
 
-h1 {
-  font-size: 1.75rem;
-}
+  .bg-light { 
+    background-color: #E5E5E5 !important;
+  }
 
-h2, h3, h4, h5, h6, p, label {
-  color: var(--secondary);
-}
+  .bg-dark {
+    background-color: #14213D !important;
+  }
+  
+  /* Header and navigation */
+  header {
+    background-color: #e97800;
+    color: #fff;
+    padding: 1rem;
+  }
 
-img {
-  width: auto;
-  max-width: 100%;
-  margin: 10px;
-  border-radius: 5px;
-}
+  .header-txt {
+    color: #212529;
+  }
 
-.service-video {
-  width: auto;
-  max-width: 100%;
-  height: 350px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-}
+  .logo-img {
+    width: 50px;
+    height: auto;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    display: flex;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
 
-header {
-  background-color: var(--secondary);
-  padding: 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+  .navbar-dark .navbar-nav .nav-link {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link:hover {
+    color: #000;
+  }
+  
+  .navbar-brand {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
 
-.btn-primary {
-  background-color: var(--primary); /* Primary color for the button */
-  color: var(--secondary);
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px; /* Space above the button */
-}
+  .navbar-toggler {
+    background-color: #212529;
+  }
 
-.btn-primary:hover {
-  background-color: var(--secondary);
-  color: var(--white);
-}
+  @media (max-width: 767px) {
+    .navbar-toggler {
+      order: 1;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .navbar-collapse {
+      order: 2;
+      width: 100%;
+    }
+  
+    .navbar-nav {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+  
+  /* Sections */
+  section {
+    padding: 2rem;
+  }
 
+  .media-container {
+    height: 400px;
+    background-image: url('./assets/llc.jpg');
+    background-size: cover; /* Cover the entire section */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center; /* Center the image in the section */
+    margin: 20px;
+    border: 1px;
+    border-radius: 15px;
+  }
 
-.left-col {
-  background-color: var(--primary);
-  padding: 20px;
-
-}
-
-.logo {
-  max-width: 50px;
-  height: auto;
-  margin-right: 20px;
-}
-
-.nav {
-  padding: 30px 20px 10px 20px;
-}
-
-.nav-item {
-  padding-right: 15px;
-}
-
-.nav-link {
-  color: var(--plat);
-  font-size: 1.5rem;
-}
-
-.home-section {
-  /* height: 500px; */
-  /* background-image: url('./assets/llc.jpg'); */
-  background-size: cover; /* Cover the entire section */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-position: center; /* Center the image in the section */
-}
-
-.services-section {
-  padding: 50px 0;
-  background-color: var(--plat); /* Light background for the section */
-}
-
-.service-item {
-  text-align: center;
-  margin-bottom: 30px; /* Space below each service item */
-}
-
-.projects-section {
-  padding: 50px 0;
-  background-color: #fff; /* Choose a background color that fits the theme */
-}
-
-.project-category {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px; /* Space between project categories */
-}
-
-.project-category h3 {
-  margin-bottom: 20px; /* Space below the category title */
-}
-
-.contact-section {
-  padding: 50px 0;
-  background-color: var(--plat); /* Light background for the section */
-}
-
-.contact-section h2,
-.contact-section h3 {
-  margin-bottom: 20px; /* Space below the headings */
-}
-
-.form-group {
-  margin-bottom: 15px; /* Space below each form field */
-}
-
-.footer {
-  background-color: var(--secondary); /* Secondary color for the background */
-  padding: 20px 0; /* Padding for the footer */
-}
-
-.footer p {
-  color: var(--white); /* White color for the text */
-}
+  .card-body {
+    color: #E5E5E5;
+    background-color: #14213D !important;
+    width: 100%;
+  }
+  
+  #home {
+    background-color: #f4f4f4;
+    text-align: center;
+  }
+  
+  .service, .project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .service img, .project img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Form */
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  label {
+    margin-bottom: 0.5rem;
+  }
+  
+  input, textarea {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  button[type="submit"] {
+    background-color: #e97800;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #e97800;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* Transitions */
+  .transition {
+    transition: transform 0.3s ease;
+  }
+  
+  .transition:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 767px) {
+    .service img, .project img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
+  /* Primary Color */
+  .bg-primary {
+    background-color: #e97800 !important;
+  }
+  
+  .text-primary {
+    color: #e97800 !important;
+  }
+  
+  a {
+    color: #e97800;
+  }
+  
+  a:hover {
+    color: #FFF !important;
+  }
+  
+  .btn-primary {
+    background-color: #e97800;
+    border-color: #e97800;
+    color: #14213D !important;
+  }
+  
+  .btn-primary:hover {
+    background-color: #14213D;
+    border-color: #14213D;
+    color: #FFF !important;
+  }
