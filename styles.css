@@ -3,7 +3,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scroll-padding-top: 105px;
+  scroll-padding-top: 145px;
+}
+
+@media (max-width: 377px) {
+  * {
+    scroll-padding-top: 185px;
+  }
 }
 
 body {
@@ -94,6 +100,10 @@ nav a {
   
     header.sticky-top {
       padding: 0;
+    }
+
+    .line-break {
+      display: block;
     }
 }
 
