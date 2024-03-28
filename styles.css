@@ -17,6 +17,10 @@ body {
   line-height: 1.6;
 }
 
+.lead {
+  font-weight: 400;
+}
+
 .bg-light { 
   background-color: #E5E5E5 !important;
 }
@@ -146,6 +150,11 @@ section {
   height: auto;
 }
 
+.lawn-img {
+  width: 354px;
+  height: 354px;
+}
+
 /* Form */
 form {
   display: flex;
@@ -217,6 +226,7 @@ a:hover {
   background-color: #e97800;
   border-color: #e97800;
   color: #14213D !important;
+  padding: 1rem;
 }
 
 .btn-primary:hover {
