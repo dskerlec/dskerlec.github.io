@@ -150,11 +150,6 @@ section {
   height: auto;
 }
 
-.lawn-img {
-  width: 354px;
-  height: 354px;
-}
-
 /* Form */
 form {
   display: flex;
